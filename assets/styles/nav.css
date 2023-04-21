@@ -36,7 +36,7 @@ ul.Offres{
     font-family: Arial;
 }
 ul.Offres a:link, ul.Offres a:visited{
-     color: #9D9D9D;
+    color: #9D9D9D;
     text-decoration: none;
  }
 ul.Offres a:active{
@@ -122,4 +122,9 @@ div.Profile .hidden .Ajouter, div.Profile .hidden .Profile, div.Profile .hidden 
      background-repeat: no-repeat;
      padding-left: 45px;
  }
+
+ul.Details .profile a:hover {
+    color: #12549b;
+    font-weight: bold;
+}
 

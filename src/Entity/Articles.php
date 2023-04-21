@@ -17,6 +17,15 @@ class Articles
     #[ORM\Column(length: 255)]
     private ?string $Title = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateAjout = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nomEntreprise = null;
+
+    #[ORM\Column(length: 2500, nullable: true)]
+    private ?string $desciption = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,7 +43,43 @@ class Articles
 
         return $this;
     }
+
+    public function getDateAjout(): ?\DateTimeInterface
+    {
+        return $this->dateAjout;
+    }
+
+    public function setDateAjout(\DateTimeInterface $dateAjout): self
+    {
+        $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    public function getNomEntreprise(): ?string
+    {
+        return $this->nomEntreprise;
+    }
+
+    public function setNomEntreprise(?string $nomEntreprise): self
+    {
+        $this->nomEntreprise = $nomEntreprise;
+
+        return $this;
+    }
+
+    public function getDesciption(): ?string
+    {
+        return $this->desciption;
+    }
+
+    public function setDesciption(?string $desciption): self
+    {
+        $this->desciption = $desciption;
+
+        return $this;
+    }
     public function toArray(){
-        return ['narticle' => $this->id, 'title'=>$this->Title];
+        return ['narticle' => $this->id, 'title'=>$this->Title, 'dateAjout' => $this->dateAjout,'nomEntreprise' => $this->nomEntreprise,'desc' => $this->desciption];
     }
 }

@@ -3,13 +3,6 @@ div.Main{
     height: 100%;
     padding-left: 50px;
     font-family: Arial;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    /*justify-content: space-evenly;*/
-}
-div.pagiContainer{
-    justify-self: flex-end;
 }
 
 div.main-logo{

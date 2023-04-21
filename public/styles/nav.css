@@ -59,7 +59,7 @@ div.Profile{
 div.Profile img[alt="photo-profile"]{
 
     width: 50px;
-    border: 2px solid black;
+    border: 2px solid #707070;
     border-radius: 150px;
     margin-left: 30px;
 
@@ -122,4 +122,7 @@ div.Profile .hidden .Ajouter, div.Profile .hidden .Profile, div.Profile .hidden 
      background-repeat: no-repeat;
      padding-left: 45px;
  }
-
+a[href="/profile"]{
+    color: #12549b;
+    font-weight: bold;
+}

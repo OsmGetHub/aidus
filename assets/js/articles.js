@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useMemo} from 'react'
 import '../styles/articles.css'
 import '../styles/pagination.css'
 import SG from '../data/societe_generale.png'
@@ -6,40 +6,37 @@ import Data from '../data/data.json'
 import axios from "axios";
 
 
-function Articles (props){
+function Articles ({filtred, records}){
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [Data, setData] = useState(['']);
-
     const recordsPerPage = 4;
     const lastIndex = currentPage * recordsPerPage;
     const firstIndex = lastIndex - recordsPerPage;
-    const [records,setRecords] = useState(Data.slice(firstIndex,lastIndex));
-    const npage = Math.ceil(Data.length/recordsPerPage);
+    const articles = records.filter((article) => {
+        if (filtred == '') return true
+        return article.title.toLowerCase().includes(filtred.toLowerCase())
+        || article.nomEntreprise.toLowerCase().includes(filtred.toLowerCase())
+
+    })
+    const npage = Math.ceil(articles.length/recordsPerPage);
     const numbers = [...Array(npage+1).keys()].slice(1);
 
-    useEffect(()=>{ setRecords(Data); },[currentPage]);
-
-
-        axios.get('api/articles/read')
-            .then(response=>{
-             console.log(response)
-            }).catch(error=>{
-            console.log(error)
-        })
 
         return(
-            <div className="Main">
+            <div style={{ paddingTop:"30px"}} className="Main">
                 {
-                    records.map(
+                    articles.map(
                         (e,i)=>(
-                        <div className="main-logo" key={i}>
-                        <img src={SG} alt=""/>
-                        <div>
-                        <h3><a href="content"></a></h3>
-                        <p>{e.Date} | <a href="content">default</a></p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga laboriosam natus neque praesentium quisquam! Aut, cupiditate eius eum eveniet illum modi natus necessitatibus nulla, officia sed sequi similique, vel veniam!</p>
-                        </div>
+                        <div style={{
+                            margin: "20px 50px 0px 0px",
+                            boxShadow: "5px 5px 5px rgba(0,0,0,0.2)"
+                        }} className="main-logo" key={e.narticle}>
+                            <img src={SG} alt=""/>
+                            <div>
+                            <h3><a href="content">{e.title}</a></h3>
+                            <p>{e.dateAjout} | <a href="content">{e.nomEntreprise}</a></p>
+                            <p>{e.desc}</p>
+                            </div>
                         </div>
                         )
                     )

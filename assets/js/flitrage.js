@@ -1,48 +1,110 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useReducer} from 'react'
 import {render} from "react-dom";
 import '../styles/filtrage.css'
-import Main from './main'
+import Data from '../data/data.json'
 import '../styles/filtrage-variables.css'
-import {pushing} from './articles'
-function Filtrage(props){
+
+
+function Filtrage({filtred, records, onChange}){
     const [lists, setLists] = React.useState([]);
     const [listr, setListr] = React.useState([]);
     const [liste, setListe] = React.useState([]);
-    useEffect(()=>{console.log(lists)},[lists])
         return(
                 <div className="div-filter">
-                    <form action="content" className="filter">
+                    <form className="filter">
                             <label><h2>Filtrage</h2></label>
                             <input className="secteur" type="text" placeholder="Secteur d'activites" onKeyPress={
-                                (e)=> printer(e, lists, setLists, "secteur")
+                                (e)=> listsPrinter(e)
                             }/>
                             <div id="secteur"></div>
                             <input className="region" type="text" placeholder="Region"onKeyPress={
-                                (e)=> printer(e, listr, setListr, "region")
+                                (e)=> listrPrinter(e)
                             }/>
                             <div id="region"></div>
                             <input className="entreprise" type="text" placeholder= "Entreprise" onKeyPress={
-                                (e)=> printer(e, liste, setListe, "entreprise")
+                                (e)=> listePrinter(e)
                             }/>
                             <div id="entreprise"></div>
-                            <button>Rechercher</button>
                     </form>
                 </div>
         );
-    function printer(e,l,s,id){
-        const newList = l;
+    function isAny(val){
+        const secteur = records.map((item) => item.title);
+        if(secteur.includes(val)) return true
+        return false
+
+    }
+    function listsPrinter(e){
+        const newList = lists;
         if(e.key ==="Enter"){
-            if(e.target.value!=='')
+            if (isAny(e.target.value) === true) {
+                if(filtred === []) onChange(e.target.value);
+                else filtred.push(e.target.value)
+            }
             newList.push(e.target.value)
             e.preventDefault()
-            s(newList)
-            e.target.value=''
-            const span = l.map((list,i)=>{
-                    return <span className="variable" key={i}> {list}<a href="content" >x</a> </span>
-                })
-            render(span,document.getElementById(id))
+             setLists(newList)
+            const span = lists.map((list, i) => {
+                return <span className="variable" key={i}> {list}</span>
+            })
+            e.target.value = ''
+            render(span, document.getElementById("secteur"))
+
         }
     }
+    // function deLists(e){
+    //     const newList = lists;
+    //     const index = newList.indexOf(document);
+    //     console.log(e)
+    //     newList.slice(index, 1);
+    //     e.preventDefault()
+    //     const span = newList.map((list, i) => {
+    //         return <span className="variable" key={i}> {list}</span>
+    //     })
+    //     render(span, document.getElementById("secteur"))
+    //
+    //
+    // }
+    function listrPrinter(e){
+        const newList = listr;
+        if(e.key ==="Enter"){
+
+            onChange(e.target.value);
+
+            if(e.target.value!=='') {
+                newList.push(e.target.value)
+                e.preventDefault()
+                setListr(newList)
+                e.target.value = ''
+                const span = listr.map((list, i) => {
+                    return <span className="variable" key={i}> {list}</span>
+                })
+                render(span, document.getElementById("region"))
+            }
+        }
+    }
+
+    function listePrinter(e){
+        const newList = liste;
+        if(e.key ==="Enter"){
+
+            onChange(e.target.value);
+
+            if(e.target.value!=='') {
+                newList.push(e.target.value)
+                e.preventDefault()
+                setListe(newList)
+                e.target.value = ''
+                const span = liste.map((list, i) => {
+                    return <span className="variable" key={i}> {list}</span>
+                })
+                render(span, document.getElementById("entreprise"))
+            }
+        }
+    }
+
+
+
 }
 
 export default Filtrage

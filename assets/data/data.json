@@ -11,14 +11,14 @@
       "Titre" : "Gestion et mangamenent",
       "Date" : "05.11.2019",
       "Region" : "Casablanca",
-      "Entreprise" : "Societe generale"
+      "Entreprise" : "Societe "
     },
     {
       "id" : 2,
       "Titre" : "Fonctionnaire",
       "Date" : "05.11.2019",
       "Region" : "Rabat-Sale-Kenitra",
-      "Entreprise" : "Societe generale"
+      "Entreprise" : "Societe "
     },
     {
       "id" : 3,
@@ -32,7 +32,7 @@
       "Titre" : "Titre b",
       "Date" : "05.11.2019",
       "Region" : "souss-massa",
-      "Entreprise" : "Societe generale"
+      "Entreprise" : " generale"
     },
     {
       "id" : 5,
@@ -53,7 +53,7 @@
       "Titre" : "Titre b",
       "Date" : "05.11.2019",
       "Region" : "souss-massa",
-      "Entreprise" : "Societe generale"
+      "Entreprise" : "Societe "
     },
     {
       "id" : 8,
@@ -67,7 +67,7 @@
       "Titre" : "Titre b",
       "Date" : "05.11.2019",
       "Region" : "souss-massa",
-      "Entreprise" : "Societe generale"
+      "Entreprise" : " generale"
     }
 
  ]

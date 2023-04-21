@@ -10,8 +10,8 @@ class Nav extends React.Component{
         return(
             <div className="main">
                 <nav>
-                    <div className="Aidus">
-                        <span>A</span>idus
+                    <div className="Aidus"><a href="/">
+                        <span>A</span>idus</a>
                     </div>
                     <ul className="Offres">
                         <li><a href="content">Offres d'emploi</a></li>
@@ -61,7 +61,7 @@ class Nav extends React.Component{
                                     color: "white"
 
                                 }} className="Ajouter">Ajouter une publication</li>
-                                <li className="Profile">Profile</li>
+                                <li className="Profile"><a href="/profile">Profile</a></li>
                                 <li className="Parametres">Parametres</li>
                                 <li style={{ borderBottom : "0px"}} className="Deconnexion">Deconnexion</li>
                             </ul>
