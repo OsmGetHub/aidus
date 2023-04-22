@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-// use App\Entity\User;
 use App\Entity\User;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,8 +13,15 @@ class SecurityController extends AbstractController
     #[Route('/login', name: 'app_login', methods: ['POST'])]
     public function login(#[CurrentUser] ?User $user): Response
     {
+        
+        if(!$user){
+            return $this->json([
+                'error' => "Add to your request : content-type: application/json",
+            ], 401);
+        }
+        
         return $this->json([
-            'user' => $user ? $user->getId() : null,
+            'user' =>'/api/users/'.$user->getId(),
         ]);
     }
 }
