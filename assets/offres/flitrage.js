@@ -7,21 +7,48 @@ function Filtrage({filtred, records, onChange}){
     const [listr, setListr] = React.useState([]);
     const [liste, setListe] = React.useState([]);
         return(
-                <div className="div-filter">
-                    <form className="filter">
-                            <label><h2>Filtrage</h2></label>
-                            <input className="secteur" type="text" placeholder="Secteur d'activites" onKeyPress={
+                <div style={FILTER_CONTAINER}>
+                    <form style={FILTER}>
+                            <label style={{
+
+                                marginTop: "50px",
+                                marginLeft: "10px",
+                                fontSize: "0.9em"
+
+                            }}><h1 style={{fontWeight : "0.8em"}}>Filtrage</h1></label>
+                            <input style={INPUTS_SECTEUR} type="text" placeholder="Secteur d'activites" onKeyPress={
                                 (e)=> listsPrinter(e)
                             }/>
-                            <div id="secteur"></div>
-                            <input className="region" type="text" placeholder="Region"onKeyPress={
+                            <div id="secteur" style={{
+
+                                margin: "0px 10px",
+                                display: "flex",
+                                flexWrap: "wrap",
+                                justifyContent: "flex-start",
+
+                            }}></div>
+                            <input style={INPUTS_REGION} type="text" placeholder="Region"onKeyPress={
                                 (e)=> listrPrinter(e)
                             }/>
-                            <div id="region"></div>
-                            <input className="entreprise" type="text" placeholder= "Entreprise" onKeyPress={
+                            <div id="region" style={{
+
+                                margin: "0px 10px",
+                                display: "flex",
+                                flexWrap: "wrap",
+                                justifyContent: "flex-start",
+
+                            }}></div>
+                            <input style={INPUTS_ENTREPRISE} type="text" placeholder= "Entreprise" onKeyPress={
                                 (e)=> listePrinter(e)
                             }/>
-                            <div id="entreprise"></div>
+                            <div id="entreprise" style={{
+
+                                margin: "0px 10px",
+                                display: "flex",
+                                flexWrap: "wrap",
+                                justifyContent: "flex-start",
+
+                            }}></div>
                     </form>
                 </div>
         );
@@ -95,7 +122,7 @@ function Filtrage({filtred, records, onChange}){
                 setListe(newList)
                 e.target.value = ''
                 const span = liste.map((list, i) => {
-                    return <span className="variable" key={i}> {list}</span>
+                    return <span style={VARIABLE} key={i}> {list}</span>
                 })
                 render(span, document.getElementById("entreprise"))
             }
@@ -107,3 +134,82 @@ function Filtrage({filtred, records, onChange}){
 }
 
 export default Filtrage
+
+//Styles de filtrage
+
+
+const FILTER_CONTAINER = {
+    "minWidth": "300px",
+    "width": "30vw",
+    "height": "100%",
+    "backgroundColor": "white"
+}
+
+const FILTER = {
+    "display": "flex",
+    "flexDirection": "column",
+    "fontFamily": "Arial Rounded MT",
+    "color": "#12549B",
+    "margin": "0px 10px",
+    padding : "0px 5%"
+}
+
+
+const INPUTS_SECTEUR ={
+    "height": "50px",
+    "margin": "10px 10px",
+    "borderRadius": "12px",
+    "borderColor": "#9D9D9D",
+    "backgroundColor": "#F7F7F7",
+    "fontFamily": "Arial Rounded MT",
+    "fontSize": "15px",
+    "backgroundRepeat": "no-repeat",
+    "backgroundSize": "22px",
+    "backgroundPosition": "8px center",
+    "paddingLeft": "37px",
+    "backgroundImage" : 'url("https://bit.ly/3L8UGqG")',
+}
+
+const INPUTS_REGION ={
+    "height": "50px",
+    "margin": "10px 10px",
+    "borderRadius": "12px",
+    "borderColor": "#9D9D9D",
+    "backgroundColor": "#F7F7F7",
+    "fontFamily": "Arial Rounded MT",
+    "fontSize": "15px",
+    "backgroundRepeat": "no-repeat",
+    "backgroundSize": "18px",
+    "backgroundPosition": "8px center",
+    "paddingLeft": "37px",
+    "backgroundImage" : 'url("https://bit.ly/3LdSqP0")',
+}
+
+const INPUTS_ENTREPRISE ={
+    "height": "50px",
+    "margin": "10px 10px",
+    "borderRadius": "12px",
+    "borderColor": "#9D9D9D",
+    "backgroundColor": "#F7F7F7",
+    "fontFamily": "Arial Rounded MT",
+    "fontSize": "15px",
+    "backgroundRepeat": "no-repeat",
+    "backgroundSize": "22px",
+    "backgroundPosition": "8px center",
+    "paddingLeft": "37px",
+    "backgroundImage" : 'url("https://bit.ly/3L6eI4Y")',
+}
+
+const VARIABLE = {
+    "border": "1px solid black",
+    "margin": "2.5px",
+    "backgroundColor": "#D2F0CC",
+    "fontFamily": "Arial Rounded MT",
+    "fontSize": "15px",
+    "color": "black",
+    "padding": "4px 8px",
+    "borderRadius": "5px"
+}
+// bag https://bit.ly/3L6eI4Y
+// region https://bit.ly/3LdSqP0
+// search https://bit.ly/3L8UGqG

@@ -31,20 +31,7 @@ export default function AddPost(){
                     </select>
                     {POST_EDITOR}
                    <div>
-                       <button style={{
-                           position : "relative",
-                           left : "40%",
-                           width : "20%",
-                           marginTop : "20px",
-                           marginBottom : "20px",
-                           padding : "10px 15px",
-                           fontWeight : "bold",
-                           fontSize : "1.1em",
-                           color: "white",
-                           backgroundColor: "#12549B",
-                           border : "0px",
-                           borderRadius : "10px"
-                       }} onClick={log}>Publier</button>
+                       <button style={SUBMIT_BUTTON} onClick={log}>Publier</button>
                    </div>
                 </form>
             </div>
@@ -81,6 +68,20 @@ const POSTING_CONTENT ={
     overflow : "hidden",
     padding : "25px 30px",
     backgroundColor : "white"
+}
+const SUBMIT_BUTTON = {
+    position : "relative",
+    left : "40%",
+    width : "20%",
+    marginTop : "20px",
+    marginBottom : "20px",
+    padding : "10px 15px",
+    fontWeight : "bold",
+    fontSize : "1.1em",
+    color: "white",
+    backgroundColor: "#12549B",
+    border : "0px",
+    borderRadius : "10px"
 }
 const POST_EDITOR =
     <>

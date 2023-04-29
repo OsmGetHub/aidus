@@ -5,8 +5,12 @@ import AjoutFormation from "./AjoutFormtion";
 import AjoutExperience from "./AjoutExperience";
 import CarriereEtudes from "./CarriereEtudes";
 import Experience from "./Experience";
+// import '../images'
+import {GolbalData} from "../app";
+
 
 export default function  InfoPerosonnels() {
+    const userData = useContext(GolbalData)
     const [Modal, setModal] = useState(false);
     const [education, setEducation] = useState(true);
     const [experiance, setExperiance] = useState(true);
@@ -17,15 +21,20 @@ export default function  InfoPerosonnels() {
                     <div style={INFOS_HEADER}>
                         <img src="profile-styles/Images_css/profile.png" alt="Photo_de_profile"
                         style={{
-                            height: "70px",
-                            width: "70px",
+                            // height: "70px",
+                            width: "90px",
                             border: "2px solid #707070",
                             borderRadius: "100px"
                         }}
                         />
-                        <h2 id="nom-etudiant">Nom_Etudiant</h2>
-                        <p id="etat">Étudiant, Sciences Mathématiques Informatiques</p>
-                        <span>Licencie Juin 2021</span>
+                        <div style={{ fontWeight:"bold", fontSize: "1.6em" }}>{userData.nom} {userData.prenom}</div>
+                        <div style={{
+
+                            fontWeight : "normal",
+                            color : "#13569F"
+
+                        }}>Étudiant, Sciences Mathématiques Informatiques</div>
+                        <span style={{ color : "rgb(128, 128, 128)", fontWeight : "normal" }}>Licencié Juin 2021</span>
                     </div>
                     <div style={PERSONAL_INFOS}>
                         <div style={{
@@ -44,10 +53,37 @@ export default function  InfoPerosonnels() {
                             </div>
                         </div>
                         <div className="required-fileds">
-                            <div style={requiredFiled}>cne <span>xxxxxxx</span><img src="" alt="visibilty"/><img style={requiredFiledIcons} src="https://rb.gy/zdf5c" alt="lock"/></div>
-                            <div style={requiredFiled}>cni <span>xxxxxxx</span><img src="" alt="visibilty"/><img style={requiredFiledIcons} src="https://rb.gy/zdf5c" alt="lock"/></div>
-                            <div style={requiredFiled}>telephone <span>xxxxxxx</span><img src="" alt="visibilty"/><img style={requiredFiledIcons} src="https://rb.gy/zdf5c" alt="lock"/></div>
-                            <div style={requiredFiled}>naissance <span>xxxxxxx</span><img src="" alt="visibilty"/><img style={requiredFiledIcons} src="https://rb.gy/zdf5c" alt="lock"/></div>
+                            <div style={REQUIRED_FIELD}>
+
+                                <span style={{ fontWeight : "bold" }}>CNE</span><span style={{marginLeft : "15px"}}>{userData.cne}</span>
+                                {IMAGE_LOCK}
+                                {IMAGE_OF_VISIBLITY}
+
+                            </div>
+                            <div style={REQUIRED_FIELD}>
+
+                                <span style={{ fontWeight : "bold" }}>CNI</span><span style={{marginLeft : "15px"}}>{userData.cni}</span>
+                                {IMAGE_LOCK}
+                                {IMAGE_OF_VISIBLITY}
+
+                            </div>
+                            <div style={REQUIRED_FIELD}>
+
+                                <span style={{ fontWeight : "bold" }}>Telephone</span><span style={{marginLeft : "15px"}}>{userData.telephone}</span>
+                                {IMAGE_LOCK}
+                                {IMAGE_OF_VISIBLITY}
+
+                            </div>
+                            <div style={REQUIRED_FIELD}>
+
+                                <span style={{ fontWeight : "bold" }}>Naissance</span><span style={{marginLeft : "15px"}}>{userData.dateNaissance}</span>
+                                {IMAGE_LOCK}
+                                {IMAGE_OF_VISIBLITY}
+
+                            </div>
+                            { (userData.sexe !== "") ? <div style={REQUIRED_FIELD}><span style={{ fontWeight : "bold" }}>SEXE</span><span style={{marginLeft : "15px"}}>{userData.sexe}</span></div> : ''}
+                            { (userData.adresse !== "") ? <div style={REQUIRED_FIELD}><span style={{ fontWeight : "bold" }}>ADRESSE</span><span style={{marginLeft : "15px"}}>{userData.adresse}</span></div> : ''}
+                            { (userData.ville !== "") ? <div style={REQUIRED_FIELD}><span style={{ fontWeight : "bold" }}>VILLE</span><span style={{marginLeft : "15px"}}>{userData.ville}</span></div> : ''}
                         </div>
                     </div>
                     <div style={{
@@ -96,19 +132,25 @@ export default function  InfoPerosonnels() {
 
 
 //Styles de profile etudiant
+
 const requiredFiledIcons = {
     width : "15px"
 }
-const requiredFiled = {
-    display : "flex",
-    padding : "10px 0px"
+const REQUIRED_FIELD = {
+    position : "relative",
+    padding : "4px 50px 4px 5px",
+    border : "2px solid #808080",
+    marginBottom : "15px",
+    boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.1)",
+    fontWeight : "normal",
+    color : "#7b7b7b"
 }
 const ALL_IN_MAIN={
     fontFamily: "Arial",
     color: "#12549b",
     display: "grid",
-    gridTemplateColumns: "1fr 300px 2% 50% 1fr 150px 1fr",
-    gridTemplateRows: "6% 14% 14% 4% 14% 14% 14% 14% 6%",
+    gridTemplateColumns: "1fr 325px 2% 50% 1fr 150px 1fr",
+    gridTemplateRows: "1fr 12% 14% 4% 14% 14% 14% 14% 1fr",
     width: "99vw",
     height: "1100px"
 }
@@ -116,10 +158,10 @@ const INFOS_HEADER = {
     gridRow: "2 / 4",
     gridColumn: "2 / 3",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     flexDirection: "column",
     alignItems: "center",
-    padding: "15px 15px",
+    padding: "20px 5px",
     textAlign: "center",
     fontWeight: "bold",
     border: "2px solid #707070",
@@ -127,12 +169,13 @@ const INFOS_HEADER = {
 }
 
 const PERSONAL_INFOS ={
-    gridRow: "5 / 7",
+    gridRowStart: "5",
     gridColumn: "2 / 3",
     border: "2px solid #707070",
     padding: "15px 20px",
     fontWeight: "bold",
-    boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.1)"
+    boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.1)",
+    height : "fit-content"
 }
 
 const APERCUS ={
@@ -154,3 +197,8 @@ const APERCUS ={
     textAlign: "center",
     boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.1)",
 }
+
+const locked = "https://bit.ly/425EjlM"
+const visiblity = "https://bit.ly/3LgUINc"
+const IMAGE_LOCK = <img style={{ position: "absolute", top: "50%", transform: "translate(-50%, -50%)", right :"0px", width: "15px" }} src={locked} alt="lock"/>
+const IMAGE_OF_VISIBLITY = <img style={{ position: "absolute", top: "50%", transform: "translate(-50%, -50%)", right : "22.5px", width: "15px" }} src={visiblity} alt="visiblity"/>

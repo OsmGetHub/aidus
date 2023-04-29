@@ -1,9 +1,0 @@
-
-ul.Offres li:link, ul.Offres li:visited{
-    color: #9D9D9D;
-    text-decoration: none;
-}
-ul.Offres li:active, ul.Offres li:hover{
-    color: #12549B;
-    text-decoration: none;
-}

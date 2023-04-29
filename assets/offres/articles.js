@@ -21,15 +21,12 @@ function Articles ({filtred, records}){
 
 
         return(
-            <div style={{ paddingTop:"30px"}} className="Main">
+            <div style={MAIN} >
                 {
                     articles.map(
                         (e,i)=>(
-                        <div style={{
-                            margin: "20px 50px 0px 0px",
-                            boxShadow: "5px 5px 5px rgba(0,0,0,0.2)"
-                        }} className="main-logo" key={e.narticle}>
-                            <img src={SG} alt=""/>
+                        <div style={MAIN_A}  key={e.narticle}>
+                            <img src={LOGO}  alt=""/>
                             <div>
                             <h3><a href="content">{e.title}</a></h3>
                             <p>{e.dateAjout} | <a href="content">{e.nomEntreprise}</a></p>
@@ -39,7 +36,7 @@ function Articles ({filtred, records}){
                         )
                     )
                 }
-                <div className="pagiContainer">
+                <div style={{ justifySelf: "flex-end" }}>
                     <ul className="pagination">
                         <li >
                             <a href="content"
@@ -126,3 +123,34 @@ function Articles ({filtred, records}){
 }
 
 export default Articles;
+
+//Styles Articles
+
+const MAIN = {
+    width: "100%",
+    height: "100%",
+    paddingLeft: "50px",
+    fontFamily: "Arial",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    paddingTop:"30px"
+}
+
+const MAIN_A = {
+    marigin: "25px 25px 0px",
+    display: "flex",
+    padding: "20px",
+    border: "2px solid #707070",
+    borderRadius: "20px",
+    backgroundColor: "white",
+    margin: "20px 50px 0px 0px",
+    boxShadow: "5px 5px 5px rgba(0,0,0,0.2)"
+}
+
+const LOGO ={
+    width: "15%",
+    borderRadius: "25px",
+    border: "1px solid #707070",
+    marginRight: "20px",
+}
